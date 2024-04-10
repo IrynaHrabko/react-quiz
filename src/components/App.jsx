@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Store from "../store";
 import QuizItem from "./QuizItem.jsx";
 import QuizProgress from "./QuizProgress.jsx";
+import QuizResult from "./QuizResult.jsx";
 
 function App() {
   const [results, setResults] = useState(0);
@@ -27,11 +28,7 @@ function App() {
           </section>
         </>
       )}
-      <section className={`quiz__result ${currentQuestion >= Store.quiz.questions.length ? '--show' : ''}`}>
-        <h3 className="quiz__summary">
-          Ви відповіли правильно на {results} із {Store.quiz.questions.length} запитань
-        </h3>
-      </section>
+      <QuizResult result={results} totalQuestions={Store.quiz.questions.length} show={currentQuestion >= Store.quiz.questions.length} />
     </main>
   );
 }
