@@ -1,3 +1,4 @@
+// App.jsx
 import React, { useState } from "react";
 import Store from "../store";
 import QuizItem from "./QuizItem.jsx";
@@ -15,6 +16,10 @@ function App() {
 
   const currentWidth = `${(currentQuestion / Store.quiz.questions.length) * 100}%`;
 
+  const reloadPage = () => {
+    window.location.reload();
+  };
+
   return (
     <main className='quiz'>
       {currentQuestion < Store.quiz.questions.length && (
@@ -28,7 +33,7 @@ function App() {
           </section>
         </>
       )}
-      <QuizResult result={results} totalQuestions={Store.quiz.questions.length} show={currentQuestion >= Store.quiz.questions.length} />
+      <QuizResult result={results} totalQuestions={Store.quiz.questions.length} show={currentQuestion >= Store.quiz.questions.length} onReload={reloadPage} />
     </main>
   );
 }
